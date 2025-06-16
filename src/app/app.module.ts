@@ -17,7 +17,12 @@ import { LoginComponent } from './auth/pages/login/login.component';
 
 // Interceptor de autenticação
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule, Routes } from '@angular/router'; 
+
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  // outras rotas...
+];
 
 @NgModule({
   declarations: [
@@ -29,12 +34,13 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot([]),
+    //RouterModule.forRoot(routes),
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule
   ],
+  //exports: [RouterModule], // <-- importante!
   providers: [
     provideHttpClient(withInterceptors([AuthInterceptor]))
   ],
